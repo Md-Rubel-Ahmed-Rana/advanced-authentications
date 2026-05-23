@@ -1,6 +1,4 @@
-import { emitter } from "@/events/eventEmitter";
 import { Request, Response, NextFunction } from "express";
-import { envConfig } from "../config";
 import { TraceService } from "@/lib/trace";
 
 /**
@@ -62,11 +60,6 @@ export const loggerMiddleware = (
 
     // Output log to console (useful during development)
     console.log(logData);
-
-    // Emit async event for persistent logging (only in development mode)
-    if (envConfig.app.env === "development") {
-      emitter.emitAsync("apiLog", logData);
-    }
 
     // Return the original response behavior
     return originalSend.call(this, body);

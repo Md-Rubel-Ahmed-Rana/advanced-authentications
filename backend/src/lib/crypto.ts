@@ -40,6 +40,10 @@ class Crypto {
 
     return decrypted.toString();
   }
+
+  generateAPIRequestTraceId(): string {
+    return crypto.randomUUID();
+  }
 }
 
 export const CryptoInstance = new Crypto();

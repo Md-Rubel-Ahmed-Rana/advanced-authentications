@@ -1,8 +1,8 @@
-import { UUIDService } from "./uuid";
+import { CryptoInstance } from "./crypto";
 
 class Service {
   generateAPIRequestTraceId(): string {
-    return UUIDService.generateFull();
+    return CryptoInstance.generateAPIRequestTraceId();
   }
 }
 

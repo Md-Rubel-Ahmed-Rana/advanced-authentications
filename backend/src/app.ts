@@ -1,6 +1,5 @@
 import express, { Application } from "express";
 import globalErrorHandler from "./middlewares/globalErrorHandler";
-import "./events/index";
 import { AppRoutes } from "./routes";
 import {
   expressMiddlewares,
@@ -21,7 +20,10 @@ app.get("/", async (req, res) => {
     statusCode: 200,
     success: true,
     message: "Passkey && 2FA Authentication application is up and running",
-    data: null,
+    data: {
+      uptime: `${process.uptime().toFixed(2)} seconds`,
+      timestamp: new Date().toLocaleString(),
+    },
   });
 });
 

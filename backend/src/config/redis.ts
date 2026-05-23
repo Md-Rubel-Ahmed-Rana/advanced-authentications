@@ -11,8 +11,12 @@ export const redisClientConfig = createClient({
 
 export const redisClient = async () => {
   console.log("⏳ Connecting Redis Cache Database...");
+
   try {
-    await redisClientConfig.connect();
+    if (!redisClientConfig.isOpen) {
+      await redisClientConfig.connect();
+    }
+
     console.log("✅ Redis connected successfully");
   } catch (error) {
     console.error("❌ Redis connection error:", error);
